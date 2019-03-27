@@ -3,7 +3,7 @@ module ChebyshevApproximation
 
     """
         Function for calculation Chebyshev polinomial of n-th order in a single point z or in array of points
-        Tₙ(z) = cos( n ArcCos(z) )
+        Tₙ(z) = cos( n ArcCos(z) ) 
     """
     function ChebyshevT(z, n::Int64)
         all(abs.(z) .<= 1) || error("Chebyshev T_n is defined on [-1, 1], value of |z|>1 was provided")
