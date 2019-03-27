@@ -1,5 +1,5 @@
 using Plots
-using Main.ChebyshevApproximation
+using ChebyshevApproximation
 
 function f(x)
     return exp.(-x.^2/0.1)
