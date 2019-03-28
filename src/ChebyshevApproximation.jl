@@ -2,8 +2,13 @@ module ChebyshevApproximation
     export GetCnList, ChebyshevFit, ChebyshevFitIntegral, ChebyshevFitDefinedIntegral
 
     """
+        ChebyshevT(z, n::Int64)
+
         Function for calculation Chebyshev polinomial of n-th order in a single point z or in array of points
-        Tₙ(z) = cos( n ArcCos(z) ) 
+        Tₙ(z) = cos( n ArcCos(z) )
+
+        Input: z -- A single point or an array of points from the interval [-1, 1] where to compute the vale of Tₙ(z)
+               n -- Integer. defines the order of the polynomial
     """
     function ChebyshevT(z, n::Int64)
         all(abs.(z) .<= 1) || error("Chebyshev T_n is defined on [-1, 1], value of |z|>1 was provided")
@@ -12,8 +17,13 @@ module ChebyshevApproximation
 
 
     """
+        ChebyshevTintegral(z, n::Int64)
+
         Function for calculation integral of n-th Chebyshev polinomial in a single point z or in array of points
-        Tₙ(z) = ∫ cos( n ArcCos(z) ) dz
+        ∫Tₙ(z)dz = ∫ cos( n ArcCos(z) ) dz
+
+        Input: z -- A single point or an array of points from the interval [-1, 1] where to compute the vale of ∫Tₙ(z)dz
+               n -- Integer. defines the order of the polynomial
     """
     function ChebyshevTintegral(z, n::Int64)
         all(abs.(z) .<= 1) || error("Chebyshev T_n is defined on [-1, 1], value of |z|>1 was provided")
@@ -27,6 +37,8 @@ module ChebyshevApproximation
 
 
     """
+        Cn(f::Function, n::Int64, N::Int64)
+
         Function for calculation the n-th coefficient C_n in Chebyshev series
         f(z) = C₀/2 + Σₙ₌₁ᴺ Cₙ ⋅ Tₙ(z)
 
@@ -43,11 +55,14 @@ module ChebyshevApproximation
 
 
     """
+        GetCnList(f::Function, Nmax::Int64=20)
+
         Function to get a list of coefficients up to Nₘₐₓ-th order for Chebyshev approximation
 
         Input: f     -- function which is to be approximated,
                N_max -- maximal index of the series. ~20 is usually suffitient for the most of functions.
                         default is 20
+
         Output: Cns  -- List of coefficients for n ∈ [1, N_max]
                 C0   -- 0-th order coeffitcent
 
@@ -63,6 +78,8 @@ module ChebyshevApproximation
 
 
     """
+        ChebyshevFit(x, Cns, C0)
+
         Function provides Chebyshev approximation for given coefficients
     """
     function ChebyshevFit(x, Cns, C0)
@@ -74,6 +91,8 @@ module ChebyshevApproximation
     end
 
     """
+        ChebyshevFitIntegral(x, Cns, C0, integralC=0)
+
         Function provides integral of Chebyshev approximation for given coefficients
     """
     function ChebyshevFitIntegral(x, Cns, C0, integralC=0)
@@ -85,6 +104,8 @@ module ChebyshevApproximation
     end
 
     """
+        ChebyshevFitDefinedIntegral(a, b, Cns, C0)
+        
         Function provides defined integral ∫ₐᵇ of Chebyshev approximation for given coefficients
     """
     function ChebyshevFitDefinedIntegral(a, b, Cns, C0)
