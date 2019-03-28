@@ -1,5 +1,7 @@
 # ChebyshevApproximation.jl
 
+[![Build Status](https://travis-ci.org/korivin42/ChebyshevApproximation.jl.svg?branch=master)](https://travis-ci.org/korivin42/ChebyshevApproximation.jl)
+
 A simple rootine for calculating 1D Chebyshev Approximation and its defined and undefined integrals
 
 ## General theory
