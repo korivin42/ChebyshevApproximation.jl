@@ -3,9 +3,15 @@
 A simple rootine for calculating 1D Chebyshev Approximation and its defined and undefined integrals
 
 ## General theory
-A 1D Chebyshev Approximation means representing a function ![equation](https://latex.codecogs.com/gif.latex?f%28z%29%20%5Capprox%20%5Cfrac%7Bc_0%7D%7B2%7D%20&plus;%20%5Csum_%7Bk%3D1%7D%5E%7BN%7D%20c_kT_k%28z%29) 
+A 1D Chebyshev Approximation means representing a function f(x) as a series of Chebyshev Polynomials of the first kind.
+Note, that x should be from an interval [-1, 1]
 
 Example:
 ```
-  f(x) = exp.(-x.^2/0.1)
+  using ChebyshevApproximation          # loading the module
+  f(x) = exp.(-x.^2/0.1)                # a random function defined x ∈ [-1, 1]
+  Cns, C0 = GetCnList(f)                # calculating fitting coeffitients for the series
+
+  xFit = -1:0.0001:1
+  fit = ChebyshevFit(xFit, Cns, C0)     # obtaining fitted function in xFit points
 ```
